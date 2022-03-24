@@ -29,7 +29,10 @@ export default {
 	@import '../style/style.css';
 
 	.wrapper {
+		margin: 0 auto;
+		width: 375px;
 		height: 100%;
+		max-height: 667px;
 		background: linear-gradient(162.39deg, #000AFF 0%, #499DDA 100%);
 		color: white;
 		padding: 1rem;

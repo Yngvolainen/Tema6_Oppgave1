@@ -17,10 +17,8 @@ export default {
 
 <style>
     .footer {
-        width: 90%;
         display: flex;
         justify-content: space-between;
-        position: fixed;
-        bottom: 20px;
+        justify-items: flex-end;
     }
 </style>

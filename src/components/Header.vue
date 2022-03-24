@@ -16,7 +16,7 @@
 
         <div v-else>
             <nav class="navigation">
-                <input type="text" v-model="city">
+                <input type="text" v-model="city" @keyup.enter="searchActive = !searchActive, changeCity">
                 <button @click="searchActive = !searchActive, changeCity">GO</button>
             </nav>
         </div>
@@ -31,12 +31,12 @@ export default {
         return {
             searchActive: false,
             city: '',
-            country: 'NO',
+            country: '',
             weekday: ''
         }
     },
-    mounted() {
-        this.$store.dispatch('getDate');
+    async mounted() {
+        await this.$store.dispatch('getDate');
         this.getCity;
         this.getWeekday;
         this.getCountry
@@ -45,14 +45,18 @@ export default {
         async changeCity() {
             this.$store.state.weatherLoaded = false;
             await this.$store.dispatch('changeCity', this.city);
-            await this.$store.dispatch('getWeatherInfo')
-            this.country = this.$store.getters.getCountry;
+            await this.$store.dispatch('getWeatherInfo');
+            // this.country = this.$store.getters.getCountry;
+            this.getCountry
         },
         getCity() {
             this.city = this.$store.getters.getCity
         },
         getWeekday() {
             this.weekday = this.$store.getters.getWeekday
+        },
+        getCountry() {
+            this.country = this.$store.getters.getCountry
         }
     }
 }

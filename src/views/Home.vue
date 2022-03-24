@@ -1,9 +1,11 @@
 <template>
 	<main class="weather">
 		<!-- display silly gif while loading weather -->
-		<div class="weather__loading" v-if="!$store.state.weatherLoaded"><img src="images/loading.gif" alt="loading">
+		<div class="weather__loading" v-if="!$store.state.weatherLoaded">
+			<img src="images/loading.gif" alt="loading weather">
+			<p>hdhg</p>
 		</div>
-
+		<!-- else actually display weather -->
 		<div class="weather__items" v-else>
 			<div>
 				<div class="weather__description">
@@ -47,6 +49,7 @@ export default {
 				wind: {
 					speed: 'm/s'},
 			},
+			// error: ''
 		}
 	},
 	// Hent vær når mounted
@@ -54,7 +57,7 @@ export default {
 		await this.$store.dispatch('getWeatherInfo');
 		this.weather = this.$store.getters.getWeather
 	},
-	// Oppdater vær når updated
+	// Oppdater vær når...updated
 	updated() {
 		this.weather = this.$store.getters.getWeather
 	}

@@ -4,7 +4,8 @@ export default {
 			city: 'Oslo',
 			weekday: '',
 			weather: {},
-			weatherLoaded: false
+			weatherLoaded: false,
+			error: ''
 		}
 	},
 	getters: {
@@ -32,6 +33,9 @@ export default {
 		},
 		setCity(state, change) {
 			state.city = change;
+		},
+		setError(state, message) {
+			state.error = message
 		}
 	},
 	actions: {
@@ -49,8 +53,36 @@ export default {
 		async getWeatherInfo(store) {
 			const url = `https://api.openweathermap.org/data/2.5/weather?q=${this.state.city}&units=metric&appid=ba434ac1e371ca2c1e463012675c773a`
 			const response = await fetch(url);
-            const weatherInfo = await response.json();
-			store.commit('setWeather', weatherInfo);
+
+		// KRØLLLLLLLLL fordi store? 🤔
+			// try {
+			// 	console.log('trying to try')
+			// 	await this.handleResponse(response)
+			// } catch(error) {
+			// 	store.commit('setError', error.message)
+			// 	console.log('fjaaaaas')
+			// }
+            // const weatherInfo = await response.json();
+			// store.commit('setWeather', weatherInfo);
+		// },
+		// async handleResponse(response) 
+		// {
+			// if(response.status >= 200 && response.status < 300) 
+			// {
+				
+				const weatherInfo = await response.json();
+				store.commit('setWeather', weatherInfo);
+				console.log(weatherInfo)
+
+			// 	console.log('this should work, now!')
+			// 	return true
+			// } else {
+			// 	if(response.status === 404) {
+			// 		this.showErrorPage
+			// 	} else {
+			// 		throw new Error('Det er alarm, på vegne av vanvittig mange')
+			// 	}
+			// }
 		},
 		changeCity(store, change) {
 			store.commit('setCity', change);
