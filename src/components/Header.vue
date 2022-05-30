@@ -10,7 +10,7 @@
                     <h6>{{country}}</h6>
                 </span>
 
-                <button><img src="images/menu.svg" alt="open search field" @click="searchActive = !searchActive"></button>
+                <button><img src="/images/menu.svg" alt="open search field" @click="searchActive = !searchActive"></button>
             </nav>
         </div>
 

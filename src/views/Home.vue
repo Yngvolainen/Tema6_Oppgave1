@@ -2,7 +2,7 @@
 	<main class="weather">
 		<!-- display silly gif while loading weather -->
 		<div class="weather__loading" v-if="!$store.state.weatherLoaded">
-			<img src="images/loading.gif" alt="loading weather">
+			<img src="/images/loading.gif" alt="loading weather">
 			<p>hdhg</p>
 		</div>
 		<!-- else actually display weather -->
@@ -39,6 +39,7 @@
 export default {
 	data() {
 		return {
+			client_id: '',
 			weather: {
 				weather: [{
 					description: 'weather description',
@@ -56,6 +57,8 @@ export default {
 	async mounted() {
 		await this.$store.dispatch('getWeatherInfo');
 		this.weather = this.$store.getters.getWeather
+		// this.client_id = import.meta.env.development.CLIENT_ID
+		// console.log(this.client_id)
 	},
 	// Oppdater vær når...updated
 	updated() {

@@ -43,15 +43,17 @@ export default {
 		// https://www.w3schools.com/jsref/jsref_getday.asp
 		// and set to store
 		getDate(store) {
-			const weekday = ["Søndag","Mandag","Tirsdag","Onsdag","Torsdag","Fredag","Lørdag"];
+			const weekday = ["Søndag","Mandag","Tirsdag","Onsdag","Torsdag","Fredag","Lørdag","Søndag","Mandag","Tirsdag"];
 			const d = new Date();
 			let day = weekday[d.getDay()+0];
 			store.commit('setWeekday', day)
 		},
 		// get weather from API with correct city, commit change to store
-		// forecast/weather, i api!!!
 		async getWeatherInfo(store) {
-			const url = `https://api.openweathermap.org/data/2.5/weather?q=${this.state.city}&units=metric&appid=ba434ac1e371ca2c1e463012675c773a`
+			// const client_id_key2 = import.meta.env.CLIENT_ID;
+			// console.log(client_id_key2);
+			const whynotworkings = 'ba434ac1e371ca2c1e463012675c773a';
+			const url = `https://api.openweathermap.org/data/2.5/weather?q=${this.state.city}&units=metric&appid=${whynotworkings}`
 			const response = await fetch(url);
 
 		// KRØLLLLLLLLL fordi store? 🤔
@@ -70,9 +72,9 @@ export default {
 			// if(response.status >= 200 && response.status < 300) 
 			// {
 				
-				const weatherInfo = await response.json();
-				store.commit('setWeather', weatherInfo);
-				console.log(weatherInfo)
+			const weatherInfo = await response.json();
+			store.commit('setWeather', weatherInfo);
+			console.log(weatherInfo)
 
 			// 	console.log('this should work, now!')
 			// 	return true
