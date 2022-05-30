@@ -1,7 +1,7 @@
 <template>
     <div class="footer">
-        <button><img src="images/Previous.svg" alt=""></button>
-        <button><img src="images/Next.svg" alt=""></button>
+        <button><img src="/images/Previous.svg" alt=""></button>
+        <button><img src="/images/Next.svg" alt=""></button>
     </div>
 </template>
 
