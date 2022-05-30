@@ -6,7 +6,7 @@ export default {
 			weather: {},
 			weatherLoaded: false,
 			error: '',
-			// client_id: import.meta.env.VITE_CLIENT_ID
+			client_id: import.meta.env.VITE_WEATHER_CLIENT_ID
 		}
 	},
 	getters: {
@@ -51,13 +51,11 @@ export default {
 		},
 		// get weather from API with correct city, commit change to store
 		async getWeatherInfo(store) {
-			// const client_id_key2 = import.meta.env.VITE_CLIENT_ID;
-			// console.log(client_id_key2);
-			const whynotworkings = 'ba434ac1e371ca2c1e463012675c773a';
-			const url = `https://api.openweathermap.org/data/2.5/weather?q=${this.state.city}&units=metric&appid=${whynotworkings}`
+			const url = `https://api.openweathermap.org/data/2.5/weather?q=${this.state.city}&units=metric&appid=${this.state.client_id}`
 			const response = await fetch(url);
 
 		// KRØLLLLLLLLL fordi store? 🤔
+		// 
 			// try {
 			// 	console.log('trying to try')
 			// 	await this.handleResponse(response)
@@ -67,9 +65,9 @@ export default {
 			// }
             // const weatherInfo = await response.json();
 			// store.commit('setWeather', weatherInfo);
-		// },
-		// async handleResponse(response) 
-		// {
+			// },
+			// async handleResponse(response) 
+			// {
 			// if(response.status >= 200 && response.status < 300) 
 			// {
 				
