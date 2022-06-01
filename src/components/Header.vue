@@ -1,11 +1,18 @@
 <template>
     <div class="header">
-
+        <!-- Display as default, or when search is not active -->
         <div v-if="!searchActive">
-            <nav class="navigation" >
+            <nav class="navigation">
+                <button>
+                    <router-link :to="{name: 'about'}">
+                    <img src="/images/info.svg" alt="">
+                    </router-link>
+                </button>
+
                 <span>
                     <h1>{{city}}</h1>
                 </span>
+                
                 <span>
                     <h6>{{country}}</h6>
                 </span>
@@ -13,15 +20,16 @@
                 <button><img src="/images/menu.svg" alt="open search field" @click="searchActive = !searchActive"></button>
             </nav>
         </div>
-
+        <!-- If searchbutton has been clicked, show this -->
         <div v-else>
             <nav class="navigation">
                 <input type="text" v-model="city" @keyup.enter="searchActive = !searchActive, changeCity">
+
                 <button @click="searchActive = !searchActive, changeCity">GO</button>
             </nav>
         </div>
 
-        <section>{{weekday}}</section>
+        <section>{{this.$store.state.weekday}}</section>
     </div>
 </template>
 
@@ -31,21 +39,23 @@ export default {
         return {
             searchActive: false,
             city: '',
-            country: '',
+            country: 'NO',
             weekday: ''
         }
     },
-    async mounted() {
-        await this.$store.dispatch('getDate');
-        this.getCity;
-        this.getWeekday;
-        this.getCountry
+    async created() {
+        await this.$store.dispatch('getDate')
+        this.getCity
+        this.getWeekday
+    },
+    methods: {
+       
     },
     computed: {
         async changeCity() {
-            this.$store.state.weatherLoaded = false;
-            await this.$store.dispatch('changeCity', this.city);
-            await this.$store.dispatch('getWeatherInfo');
+            this.$store.state.weatherLoaded = false
+            await this.$store.dispatch('changeCity', this.city)
+            await this.$store.dispatch('getWeatherInfo')
             // this.country = this.$store.getters.getCountry;
             this.getCountry
         },
@@ -66,7 +76,10 @@ export default {
     .header button {
         color: white;
     }
+
     .navigation {
+        height: 50px;
+        text-transform: capitalize;
         display: flex;
         justify-content: space-between;
         align-items: center;

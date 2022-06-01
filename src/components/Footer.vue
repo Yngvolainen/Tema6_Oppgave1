@@ -1,7 +1,8 @@
 <template>
     <div class="footer">
-        <button><img src="/images/Previous.svg" alt=""></button>
-        <button><img src="/images/Next.svg" alt=""></button>
+        <button @click="goBack"><img src="images/Previous.svg" alt=""></button>
+        
+        <button @click="goForward"><img src="images/Next.svg" alt=""></button>
     </div>
 </template>
 
@@ -10,6 +11,18 @@ export default {
     data() {
         return {
             
+        }
+    },
+    methods: {
+        async goBack() {
+            await this.$store.dispatch('goOneDayBack', -8)
+            this.$store.dispatch('getDate')
+            // console.log('clicked back')
+        },
+        async goForward() {
+            await this.$store.dispatch('goOneDayForward', 8)
+            this.$store.dispatch('getDate')
+            // console.log('clicked forward')
         }
     }
 }
