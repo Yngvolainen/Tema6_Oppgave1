@@ -5,7 +5,7 @@
             <nav class="navigation">
                 <button>
                     <router-link :to="{name: 'about'}">
-                    <img src="/images/info.svg" alt="">
+                        <img src="/images/info.svg" alt="">
                     </router-link>
                 </button>
 
