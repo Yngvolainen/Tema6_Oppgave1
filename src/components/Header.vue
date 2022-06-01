@@ -1,6 +1,7 @@
 <template>
     <div class="header">
         <!-- Display as default, or when search is not active -->
+        <!-- this comment is only for good luck (hoping netlify will accept this site) -->
         <div v-if="!searchActive">
             <nav class="navigation">
                 <button>
@@ -17,7 +18,9 @@
                     <h6>{{country}}</h6>
                 </span>
 
-                <button><img src="/images/menu.svg" alt="open search field" @click="searchActive = !searchActive"></button>
+                <button>
+                    <img src="/images/Menu.svg" alt="open search field" @click="searchActive = !searchActive">
+                </button>
             </nav>
         </div>
         <!-- If searchbutton has been clicked, show this -->
