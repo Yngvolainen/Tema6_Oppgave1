@@ -5,5 +5,5 @@
 
     <p>Check the next 5 days with the arrows below</p>
     
-    <p>Click the Sun to reurn!</p>
+    <p>Click the Sun to return!</p>
 </template>
