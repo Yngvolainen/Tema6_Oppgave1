@@ -1,8 +1,8 @@
 <template>
     <div class="footer">
-        <button @click="goBack"><img src="images/Previous.svg" alt=""></button>
+        <button @click="goBack"><img src="/images/Previous.svg" alt=""></button>
         
-        <button @click="goForward"><img src="images/Next.svg" alt=""></button>
+        <button @click="goForward"><img src="/images/Next.svg" alt=""></button>
     </div>
 </template>
 
