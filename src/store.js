@@ -1,17 +1,21 @@
 export default {
 	state() {
 		return {
-			city: 'Oslo',
-			weekday: '',
 			weather: {},
+			city: 'Oslo',
 			weatherLoaded: false,
-			error: ''
+			weekday: '',
+			error: '',
+			daysFromNow: 0,
+			weatherListIndex: 0
 		}
 	},
 	getters: {
+		// from Home
 		getWeather(state) {
 			return state.weather
 		},
+		// from Header
 		getCity(state) {
 			return state.city
 		},
@@ -19,73 +23,78 @@ export default {
 			return state.weekday
 		},
 		getCountry(state) {
-			return state.weather.sys.country
-		}
+			return state.weather.city.country
+		},
+		getIndex(state){
+			return state.weatherListIndex
+		},
+
 	},
 	mutations: {
 		setWeather(state, weatherInfo) {
-			state.weather = weatherInfo;
-			state.weatherLoaded = true;
-			console.log(state.weather)
+			state.weather = weatherInfo
+			state.weatherLoaded = true
 		},
 		setWeekday(state, currentDate) {
-			state.weekday = currentDate;
+			state.weekday = currentDate
 		},
 		setCity(state, change) {
-			state.city = change;
+			state.city = change
 		},
-		setError(state, message) {
-			state.error = message
+		goForwards(state, change) {
+			if(state.daysFromNow >= 0 && state.daysFromNow < 4) {
+				state.weatherListIndex += change
+				state.daysFromNow += 1
+			} else {
+				return
+			}
+		},
+		goBack(state, change) {
+			if(state.daysFromNow < 5 && state.daysFromNow > 0) {
+				state.weatherListIndex += change
+				state.daysFromNow -= 1
+			} else {
+				return
+			}
 		}
+		// setError(state, message) {
+		// 	state.error = message
+		// }
 	},
 	actions: {
 		// get day of week, with help from:
 		// https://www.w3schools.com/jsref/jsref_getday.asp
 		// and set to store
+
+		// from Header
 		getDate(store) {
-			const weekday = ["Søndag","Mandag","Tirsdag","Onsdag","Torsdag","Fredag","Lørdag"];
-			const d = new Date();
-			let day = weekday[d.getDay()+0];
+			// lol, weekday hack
+			const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday","Monday","Tuesday","Wednesday"]
+			const d = new Date()
+			let day = weekday[d.getDay()+this.state.daysFromNow]
 			store.commit('setWeekday', day)
+			console.log(day)
 		},
-		// get weather from API with correct city, commit change to store
-		// forecast/weather, i api!!!
+		// get weather from API with preset or entered city, commit change to store
 		async getWeatherInfo(store) {
-			const url = `https://api.openweathermap.org/data/2.5/weather?q=${this.state.city}&units=metric&appid=ba434ac1e371ca2c1e463012675c773a`
-			const response = await fetch(url);
-
-		// KRØLLLLLLLLL fordi store? 🤔
-			// try {
-			// 	console.log('trying to try')
-			// 	await this.handleResponse(response)
-			// } catch(error) {
-			// 	store.commit('setError', error.message)
-			// 	console.log('fjaaaaas')
-			// }
-            // const weatherInfo = await response.json();
-			// store.commit('setWeather', weatherInfo);
-		// },
-		// async handleResponse(response) 
-		// {
-			// if(response.status >= 200 && response.status < 300) 
-			// {
-				
-				const weatherInfo = await response.json();
-				store.commit('setWeather', weatherInfo);
-				console.log(weatherInfo)
-
-			// 	console.log('this should work, now!')
-			// 	return true
-			// } else {
-			// 	if(response.status === 404) {
-			// 		this.showErrorPage
-			// 	} else {
-			// 		throw new Error('Det er alarm, på vegne av vanvittig mange')
-			// 	}
-			// }
+			const APP_ID = import.meta.env.VITE_CLIENT_ID;
+			// old api below...
+			// const url = `https://api.openweathermap.org/data/2.5/onecall?lat=60&lon=11&exclude=minutely,hourly,alerts&units=metric&appid=${this.state.APP_ID}`
+			const url = `https://api.openweathermap.org/data/2.5/forecast?q=${this.state.city}&units=metric&appid=${APP_ID}`
+			const response = await fetch(url)
+			const weatherInfo = await response.json()
+			store.commit('setWeather', weatherInfo)
+			console.log(weatherInfo)
 		},
 		changeCity(store, change) {
-			store.commit('setCity', change);
+			store.commit('setCity', change)
+		},
+		// from Footer
+		goOneDayForward(store, change) {
+			store.commit('goForwards', change)
+		},
+		goOneDayBack(store, change) {
+			store.commit('goBack', change)
 		}
 	}
 };
