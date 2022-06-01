@@ -56,9 +56,7 @@ export default {
 	// Hent vær når mounted
 	async mounted() {
 		await this.$store.dispatch('getWeatherInfo');
-		this.weather = this.$store.getters.getWeather
-		// this.client_id = import.meta.env.development.CLIENT_ID
-		// console.log(this.client_id)
+		this.weather = this.$store.getters.getWeathe
 	},
 	// Oppdater vær når...updated
 	updated() {
