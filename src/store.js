@@ -8,6 +8,7 @@ export default {
 			error: '',
 			daysFromNow: 0,
 			weatherListIndex: 0
+			error: '',
 		}
 	},
 	getters: {
@@ -84,7 +85,23 @@ export default {
 			const response = await fetch(url)
 			const weatherInfo = await response.json()
 			store.commit('setWeather', weatherInfo)
-			console.log(weatherInfo)
+
+		  //async getWeatherInfo(store) {
+			//const url = `https://api.openweathermap.org/data/2.5/weather?q=${this.state.city}&units=metric&appid=${this.state.client_id}`
+			//const response = await fetch(url);
+
+			// KRØLLLLLLLLL fordi store? 🤔
+			// 
+			// try {
+			// 	console.log('trying to try')
+			// 	await this.handleResponse(response)
+			// } catch(error) {
+			// 	store.commit('setError', error.message)
+			// 	console.log('fjaaaaas')
+			
+			//const weatherInfo = await response.json();
+			//store.commit('setWeather', weatherInfo);
+			//console.log(weatherInfo)
 		},
 		changeCity(store, change) {
 			store.commit('setCity', change)

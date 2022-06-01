@@ -2,7 +2,7 @@
 	<main class="weather">
 		<!-- display silly gif while loading weather -->
 		<div class="weather__loading" v-if="!$store.state.weatherLoaded">
-			<img src="images/loading.gif" alt="loading weather">
+			<img src="/images/loading.gif" alt="loading weather">
 
 			<p>Loading Weather Info, if at all possible...</p>
 		</div>
@@ -42,7 +42,8 @@ export default {
 	data() {
 		return {
 			position: {},
-			// placeholder for weatherinfo for testing purposes, and in case of emergency
+			client_id: '',
+      // placeholder for weatherinfo for testing purposes, and in case of emergency
 			weather: {
 				list: [{
 					main: {
@@ -64,7 +65,7 @@ export default {
 	async created() {
 		await this.getCoordinates(),
 		await this.$store.dispatch('getWeatherInfo');
-		this.weather = this.$store.getters.getWeather
+		this.weather = this.$store.getters.getWeathe
 	},
 
 	// Oppdater vær når...updated, dvs man har søkt etter en annen by
