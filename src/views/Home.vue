@@ -4,7 +4,7 @@
 		<div class="weather__loading" v-if="!$store.state.weatherLoaded">
 			<img src="/images/loading.gif" alt="loading weather">
 
-			<p>Loading Weather Info, if at all possible...</p>
+			<p>Loading Weather Info</p>
 		</div>
 		<!-- else actually display weather -->
 		<div class="weather__items" v-else>
@@ -23,13 +23,13 @@
 			<div class="weather__subitems">
 				<div class="weather__temperature">
 					<h3>
-						{{weather.list[getIndex].main.temp}} ℃
+						{{Math.round(weather.list[getIndex].main.temp)}} ℃
 					</h3>
 				</div>
 
 				<div class="weather__wind">
 					<h3>
-						{{weather.list[getIndex].wind.speed}} m/s
+						{{Math.round(weather.list[getIndex].wind.speed)}} m/s
 					</h3>
 				</div>
 			</div>
@@ -65,7 +65,7 @@ export default {
 	async created() {
 		await this.getCoordinates(),
 		await this.$store.dispatch('getWeatherInfo');
-		this.weather = this.$store.getters.getWeathe
+		this.weather = this.$store.getters.getWeather
 	},
 
 	// Oppdater vær når...updated, dvs man har søkt etter en annen by

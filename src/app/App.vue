@@ -30,9 +30,9 @@ export default {
 
 	.app__wrapper {
 		margin: 0 auto;
-		width: 375px;
-		height: 667px;
-		/* max-height: 667px; */
+		max-width: 540px;
+		height: 100%;
+		max-height: 900px;
 		display: flex;
 		flex-flow: column nowrap;
 		justify-content: space-between;

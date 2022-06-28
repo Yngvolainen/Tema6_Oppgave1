@@ -1,8 +1,10 @@
 <template>
     <div class="footer">
-        <button @click="goBack"><img src="/images/Previous.svg" alt=""></button>
+        <button @click="goBack"><img v-show="canWeGoBack" src="/images/Previous.svg" alt=""></button>
         
-        <button @click="goForward"><img src="/images/Next.svg" alt=""></button>
+        <section>{{this.$store.state.weekday}}</section>
+
+        <button @click="goForward"><img v-show="canWeGoForwards" src="/images/Next.svg" alt=""></button>
     </div>
 </template>
 
@@ -23,6 +25,22 @@ export default {
             await this.$store.dispatch('goOneDayForward', 8)
             this.$store.dispatch('getDate')
             // console.log('clicked forward')
+        }
+    },
+    computed: {
+        canWeGoBack() {
+            if (this.$store.state.daysFromNow === 0) {
+                return false
+            } else {
+                return true
+            }
+        },
+        canWeGoForwards() {
+            if (this.$store.state.daysFromNow === 4) {
+                return false
+            } else {
+                return true
+            }
         }
     }
 }

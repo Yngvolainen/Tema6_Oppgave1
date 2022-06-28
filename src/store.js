@@ -8,7 +8,7 @@ export default {
 			error: '',
 			daysFromNow: 0,
 			weatherListIndex: 0,
-			error: '',
+			aboutVisible: false
 		}
 	},
 	getters: {
@@ -74,7 +74,7 @@ export default {
 			const d = new Date()
 			let day = weekday[d.getDay()+this.state.daysFromNow]
 			store.commit('setWeekday', day)
-			console.log(day)
+			// console.log(day)
 		},
 		// get weather from API with preset or entered city, commit change to store
 		async getWeatherInfo(store) {
@@ -85,7 +85,7 @@ export default {
 			const response = await fetch(url)
 			const weatherInfo = await response.json()
 			store.commit('setWeather', weatherInfo)
-
+			console.log(weatherInfo)
 			// KRØLLLLLLLLL fordi store? 🤔
 			// 
 			// try {
