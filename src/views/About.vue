@@ -3,7 +3,7 @@
         <p>Ze Weather App is a simple application where you can look up what the weather is now, and for the next few days.</p>
         <br>
         <p>
-            The menu in the top right corner ( <span class="about__menu-preview"><img  src="/images/menu.svg" alt=""></span> ) will open the search field, where you can search for any city available in our database.
+            The menu in the top right corner will open the search field, where you can search for any city available in our database.
         </p>
         <br>
         <p>
