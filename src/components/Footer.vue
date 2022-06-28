@@ -48,6 +48,9 @@ export default {
 
 <style>
     .footer {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 540px;
         display: flex;
         justify-content: space-between;
         justify-items: center;

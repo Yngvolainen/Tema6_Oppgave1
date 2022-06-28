@@ -30,7 +30,7 @@ export default {
 
 	.app__wrapper {
 		margin: 0 auto;
-		max-width: 540px;
+		/* max-width: 540px; */
 		height: 100%;
 		max-height: 900px;
 		display: flex;

@@ -97,11 +97,14 @@ export default {
 		justify-content: space-around;
 		align-items: center;
 	}
+	.weather__loading img {
+		width: 300px;
+	}
 	.weather__description {
 		text-transform: capitalize;
 	}
 	.weather__icon {
-		width: 80%;
+		width: 300px;
 	}
 	.weather__subitems {
 		/* height: 2rem; */

@@ -95,6 +95,12 @@ export default {
 </script>
 
 <style>
+    .header {
+        margin: 0 auto;
+        width: 100%;
+        /* min-width: 300px; */
+        max-width: 540px;
+    }
     .header__navigation button {
         color: white;
         /* height: 1rem;  */
