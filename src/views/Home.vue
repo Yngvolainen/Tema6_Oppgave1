@@ -4,7 +4,7 @@
 		<div class="weather__loading" v-if="!$store.state.weatherLoaded">
 			<img src="/images/loading.gif" alt="loading weather">
 
-			<p>Loading Weather Info</p>
+			<p>Looking up your city</p>
 		</div>
 		<!-- else actually display weather -->
 		<div class="weather__items" v-else>
@@ -42,7 +42,7 @@ export default {
 	data() {
 		return {
 			position: {},
-			client_id: '',
+			// client_id: '',
       // placeholder for weatherinfo for testing purposes, and in case of emergency
 			weather: {
 				list: [{
@@ -76,7 +76,7 @@ export default {
 		getCoordinates() {
 			navigator.geolocation.getCurrentPosition(position => {
 			const { latitude, longitude } = position.coords;
-			console.log(position.coords)
+			console.log(latitude, longitude)
 			});
 		},
 	},
@@ -97,7 +97,6 @@ export default {
 		justify-content: space-around;
 		align-items: center;
 	}
-
 	.weather__description {
 		text-transform: capitalize;
 	}
@@ -105,7 +104,7 @@ export default {
 		width: 80%;
 	}
 	.weather__subitems {
-		height: 2rem;
+		/* height: 2rem; */
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;

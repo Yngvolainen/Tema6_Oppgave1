@@ -18,12 +18,4 @@
         width: 80%;
         text-align: center;
     }
-
-    .about__menu-preview {
-        display: inline-block;
-    }
-
-    .about__menu-preview img {
-        height: 0.8rem; 
-    }
 </style>

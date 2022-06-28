@@ -23,9 +23,9 @@ export default {
 		getWeekday(state) {
 			return state.weekday
 		},
-		getCountry(state) {
-			return state.weather.city.country
-		},
+		// getCountry(state) {
+		// 	return state.weather.city.country
+		// },
 		getIndex(state){
 			return state.weatherListIndex
 		},

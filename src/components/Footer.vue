@@ -1,11 +1,11 @@
 <template>
-    <div class="footer">
+    <footer class="footer">
         <button @click="goBack"><img v-show="canWeGoBack" src="/images/Previous.svg" alt=""></button>
         
         <section>{{this.$store.state.weekday}}</section>
 
         <button @click="goForward"><img v-show="canWeGoForwards" src="/images/Next.svg" alt=""></button>
-    </div>
+    </footer>
 </template>
 
 <script>
@@ -50,6 +50,6 @@ export default {
     .footer {
         display: flex;
         justify-content: space-between;
-        justify-items: flex-end;
+        justify-items: center;
     }
 </style>

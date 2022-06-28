@@ -1,49 +1,49 @@
 <template>
     <div class="header">
         <!-- Display as default, or when search is not active -->
-        <!-- this comment is only for good luck (hoping netlify will accept this site) -->
         <div v-if="!searchActive">
             <nav class="header__navigation">
                 <button class="header__info" @click="toggleAbout">
-                    <!-- <router-link :to="{name: 'about'}"> -->
                         <img src="/images/info.svg" alt="">
-                    <!-- </router-link> -->
                 </button>
                 <div class="header__location">
                     <span>
                         <h1>{{city}}</h1>
                     </span>
                     
-                    <span>
+                    <!-- <span>
                         <h6>{{country}}</h6>
-                    </span>
+                    </span> -->
                 </div>
 
                 <button class="header__menu">
-                    <img src="/images/Menu.svg" alt="open search field" @click="searchActive = !searchActive">
+                    <img src="/images/Menu.svg" alt="open search field" @click="isSearchActive">
                 </button>
             </nav>
         </div>
         <!-- If searchbutton has been clicked, show this -->
         <div v-else>
             <nav class="header__navigation">
-                <input type="text" v-model="city" @keyup.enter="searchActive = !searchActive, changeCity">
+                <button class="header__info" @click="toggleAbout">
+                    <img src="/images/info.svg" alt="">
+                </button>
 
-                <button class="header__menu" @click="searchActive = !searchActive, changeCity">GO</button>
+                <input type="text" ref="input" v-model="city" @keyup.enter="changeCity, isSearchActive()">
+
+                <button class="header__menu" @click="changeCity, isSearchActive()">GO</button>
             </nav>
         </div>
-
-        <!-- <section>{{this.$store.state.weekday}}</section> -->
     </div>
 </template>
 
 <script>
+
 export default {
     data() {
         return {
             searchActive: false,
             city: '',
-            country: '',
+            // country: '',
             weekday: ''
         }
     },
@@ -61,6 +61,20 @@ export default {
                 this.$router.push({name: 'home'})
                 this.$store.state.aboutVisible = false
             }
+        },
+        // getCountry() {
+        //     this.country = this.$store.getters.getCountry
+        // },
+        isSearchActive() {
+            if (this.searchActive === false) {
+                this.searchActive = true
+                setTimeout(this.selectText, 100)
+            } else {
+                this.searchActive = false
+            }
+        },
+        selectText() {
+            this.$refs.input.select()
         }
     },
     computed: {
@@ -68,7 +82,6 @@ export default {
             this.$store.state.weatherLoaded = false
             await this.$store.dispatch('changeCity', this.city)
             await this.$store.dispatch('getWeatherInfo')
-            this.country = this.$store.getters.getCountry;
             this.getCountry
         },
         getCity() {
@@ -76,10 +89,7 @@ export default {
         },
         getWeekday() {
             this.weekday = this.$store.getters.getWeekday
-        },
-        getCountry() {
-            this.country = this.$store.getters.getCountry
-        },
+        }
     }
 }
 </script>
@@ -94,14 +104,18 @@ export default {
         /* max-width: 400px; */
         height: 50px;
         text-transform: capitalize;
-        display: flex;
+        /* display: flex;
         justify-content: space-between;
-        align-items: flex-end;
+        align-items: flex-end; */
+        display: grid;
+        grid-template-columns: 1fr 6fr 1fr;
+        align-items: center;
         color: white;
     }
 
-    .header__info {
-        position: relative;
+    .header__info img {
+        height: 2rem;
+        /* position: relative; */
         /* top: 0px;
         left: 10px; */
     }
@@ -114,9 +128,13 @@ export default {
     }
 
     .header__menu {
-        position: relative;
+        /* position: relative;
         top: -20px;
-        right: 0px;
+        right: 0px; */
+    }
+
+    .header__menu img {
+        height: 1.5rem;
     }
 
     .header input {
