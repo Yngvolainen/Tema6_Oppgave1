@@ -29,15 +29,16 @@ export default {
 	@import '../style/style.css';
 
 	.app__wrapper {
+		font-family: var(--font-family);
+		position: relative;
+		color: white;
+		background: var(--background-gradient);
 		margin: 0 auto;
-		/* max-width: 540px; */
+		padding: 1rem;
 		height: 100%;
-		max-height: 900px;
+		/* max-height: 1200px; */
 		display: flex;
 		flex-flow: column nowrap;
 		justify-content: space-between;
-		background: linear-gradient(162.39deg, #000AFF 0%, #499DDA 100%);
-		color: white;
-		padding: 1rem;
 	}
 </style>

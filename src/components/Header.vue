@@ -4,20 +4,15 @@
         <div v-if="!searchActive">
             <nav class="header__navigation">
                 <button class="header__info" @click="toggleAbout">
-                        <img src="/images/info.svg" alt="">
+                        <img src="/images/InfoCircle.svg" alt="open info page">
                 </button>
-                <div class="header__location">
-                    <span>
-                        <h1>{{city}}</h1>
-                    </span>
-                    
-                    <!-- <span>
-                        <h6>{{country}}</h6>
-                    </span> -->
+
+                <div class="header__location" @click="isSearchActive()">
+                    <h1>{{city}}</h1>
                 </div>
 
-                <button class="header__menu">
-                    <img src="/images/Menu.svg" alt="open search field" @click="isSearchActive">
+                <button class="header__search">
+                    <img src="/images/Search.svg" alt="open search field" @click="isSearchActive()">
                 </button>
             </nav>
         </div>
@@ -25,12 +20,14 @@
         <div v-else>
             <nav class="header__navigation">
                 <button class="header__info" @click="toggleAbout">
-                    <img src="/images/info.svg" alt="">
+                    <img src="/images/InfoCircle.svg" alt="">
                 </button>
 
                 <input type="text" ref="input" v-model="city" @keyup.enter="changeCity, isSearchActive()">
 
-                <button class="header__menu" @click="changeCity, isSearchActive()">GO</button>
+                <button class="header__search" @click="changeCity, isSearchActive()">
+                    <img src="/images/Search.svg" alt="open search field">
+                </button>
             </nav>
         </div>
     </div>
@@ -98,54 +95,32 @@ export default {
     .header {
         margin: 0 auto;
         width: 100%;
-        /* min-width: 300px; */
         max-width: 540px;
     }
-    .header__navigation button {
-        color: white;
-        /* height: 1rem;  */
+
+    .header img {
+        height: var(--icon-size-medium);
     }
 
     .header__navigation {
-        /* max-width: 400px; */
-        height: 50px;
-        text-transform: capitalize;
-        /* display: flex;
-        justify-content: space-between;
-        align-items: flex-end; */
+        height: 3.5rem;
         display: grid;
-        grid-template-columns: 1fr 6fr 1fr;
+        grid-template-columns: 1fr auto 1fr;
         align-items: center;
-        color: white;
+        text-transform: capitalize;
     }
 
-    .header__info img {
-        height: 2rem;
-        /* position: relative; */
-        /* top: 0px;
-        left: 10px; */
-    }
-
-    .header__location {
-        width: 100%;
-        text-align: center;
-        /* display: flex;
-        align-items: flex-end; */
-    }
-
-    .header__menu {
-        /* position: relative;
-        top: -20px;
-        right: 0px; */
-    }
-
-    .header__menu img {
-        height: 1.5rem;
+    .header__info {
+        justify-self: start;
     }
 
     .header input {
         background: white;
         padding: 0.5rem;
         border-radius: 3px;
+    }
+
+    .header__search {
+        justify-self: end;
     }
 </style>   

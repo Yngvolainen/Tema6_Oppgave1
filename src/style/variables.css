@@ -1,7 +1,12 @@
 :root {
 	--background: white;
 	--foreground: black;
+	--background-gradient: linear-gradient(#558EE3, #59A1C0);
 	
-	--font-family: "Arial";
+	--font-family: "poppins";
 	--font-size: 20px;
+
+	--icon-size-small: 1rem;
+	--icon-size-medium: 1.5rem;
+	--icon-size-large: 2rem;
 }

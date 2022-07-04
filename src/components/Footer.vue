@@ -1,18 +1,20 @@
 <template>
     <footer class="footer">
-        <button @click="goBack"><img v-show="canWeGoBack" src="/images/Previous.svg" alt=""></button>
+        <button class="footer__go-back" @click="goBack"><img v-show="canWeGoBack" src="/images/ChevronLeft.svg" alt="go one day back"></button>
         
-        <section>{{this.$store.state.weekday}}</section>
+        <!-- <section class="footer__weekday">{{this.$store.state.weekday}}</section> -->
+        <section class="footer__weekday">{{getWeekday}}</section>
 
-        <button @click="goForward"><img v-show="canWeGoForwards" src="/images/Next.svg" alt=""></button>
+        <button class="footer__go-forwards" @click="goForward"><img v-show="canWeGoForwards" src="/images/ChevronRight.svg" alt="go one day forwards"></button>
     </footer>
 </template>
 
 <script>
+
 export default {
     data() {
         return {
-            
+
         }
     },
     methods: {
@@ -31,16 +33,17 @@ export default {
         canWeGoBack() {
             if (this.$store.state.daysFromNow === 0) {
                 return false
-            } else {
-                return true
-            }
+            } 
+            return true
         },
         canWeGoForwards() {
             if (this.$store.state.daysFromNow === 4) {
                 return false
-            } else {
-                return true
-            }
+            } 
+            return true
+        },
+        getWeekday() {
+            return this.$store.state.weekday
         }
     }
 }
@@ -51,8 +54,23 @@ export default {
         margin: 0 auto;
         width: 100%;
         max-width: 540px;
-        display: flex;
-        justify-content: space-between;
-        justify-items: center;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .footer img {
+        height: var(--icon-size-medium);
+    }
+
+    .footer__weekday {
+        text-align: center;
+    }
+
+    .footer__go-back {
+        justify-self: start;
+    }
+
+    .footer__go-forwards {
+        justify-self: end;
     }
 </style>

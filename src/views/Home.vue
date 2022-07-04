@@ -8,29 +8,28 @@
 		</div>
 		<!-- else actually display weather -->
 		<div class="weather__items" v-else>
-			<div>
-				<div class="weather__description">
-					<h2>
-						{{weather.list[getIndex].weather[0].description}}
-					</h2>
-				</div>
-			</div>
-
+			
 			<div class="weather__icon">
 				<img :src="`http://openweathermap.org/img/wn/${weather.list[getIndex].weather[0].icon}@4x.png`" alt="weathericon">
 			</div>
 
+			<div class="weather__temperature">
+				<h2>
+					{{Math.round(weather.list[getIndex].main.temp)}} ºc
+				</h2>
+			</div>
+
 			<div class="weather__subitems">
-				<div class="weather__temperature">
-					<h3>
-						{{Math.round(weather.list[getIndex].main.temp)}} ℃
-					</h3>
-				</div>
+				<div class="weather__description">
+					<p>
+						{{weather.list[getIndex].weather[0].description}}
+					</p>
+				</div>	
 
 				<div class="weather__wind">
-					<h3>
+					<p>
 						{{Math.round(weather.list[getIndex].wind.speed)}} m/s
-					</h3>
+					</p>
 				</div>
 			</div>
 		</div>
@@ -89,35 +88,38 @@ export default {
 </script>
 
 <style>
-	.weather__loading,
-	.weather__items {
-		height: 100%;
+	.weather__items,
+	.weather__loading
+	{
+		height: min-content;
 		display: flex;
-		flex-direction: column;
-		justify-content: space-around;
-		align-items: center;
-	}
-	.weather__loading img {
-		width: 300px;
-	}
-	.weather__description {
-		text-transform: capitalize;
-	}
-	.weather__icon {
-		width: 300px;
-	}
-	.weather__subitems {
-		/* height: 2rem; */
-		display: flex;
-		flex-direction: row;
+		flex-flow: column nowrap;
 		justify-content: space-between;
 		align-items: center;
 	}
+	.weather img {
+		width: 300px;
+	}
+
 	.weather__temperature {
+		margin-bottom: 2rem;
+	}
+
+	.weather__temperature h2 {
+		font-size: 3rem;
+	}
+
+	.weather__subitems {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: space-between;
+	}
+
+	.weather__description {
 		padding-right: 25px;
 	}
+
 	.weather__wind {
 		padding-left: 25px;
-		border-left: 1px solid white;
 	}
 </style>
