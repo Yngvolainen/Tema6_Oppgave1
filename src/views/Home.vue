@@ -10,7 +10,7 @@
 		<div class="weather__items" v-else>
 			
 			<div class="weather__icon">
-				<img :src="`http://openweathermap.org/img/wn/${weather.list[getIndex].weather[0].icon}@4x.png`" alt="weathericon">
+				<img :src="`https://openweathermap.org/img/wn/${weather.list[getIndex].weather[0].icon}@4x.png`" alt="weathericon">
 			</div>
 
 			<div class="weather__temperature">
