@@ -97,6 +97,7 @@ export default {
 		justify-content: space-between;
 		align-items: center;
 	}
+	
 	.weather img {
 		width: 300px;
 	}

@@ -53,7 +53,7 @@ export default {
     .footer {
         margin: 0 auto;
         width: 100%;
-        max-width: 540px;
+        max-width: var(--max-width-global);
         display: grid;
         grid-template-columns: repeat(3, 1fr);
     }

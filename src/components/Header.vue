@@ -95,7 +95,7 @@ export default {
     .header {
         margin: 0 auto;
         width: 100%;
-        max-width: 540px;
+        max-width: var(--max-width-global);
     }
 
     .header img {

@@ -9,4 +9,6 @@
 	--icon-size-small: 1rem;
 	--icon-size-medium: 1.5rem;
 	--icon-size-large: 2rem;
+
+	--max-width-global: 540px;
 }
