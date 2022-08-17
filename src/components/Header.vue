@@ -110,14 +110,14 @@ export default {
         text-transform: capitalize;
     }
 
-    .header__info {
-        justify-self: start;
-    }
-
-    .header input {
+    .header__navigation input {
         background: white;
         padding: 0.5rem;
         border-radius: 3px;
+    }
+
+    .header__info {
+        justify-self: start;
     }
 
     .header__search {

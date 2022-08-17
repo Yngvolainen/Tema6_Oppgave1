@@ -41,7 +41,6 @@ export default {
 	data() {
 		return {
 			position: {},
-			// client_id: '',
       // placeholder for weatherinfo for testing purposes, and in case of emergency
 			weather: {
 				list: [{
@@ -62,7 +61,7 @@ export default {
 	},
 	// Hent vær når created
 	async created() {
-		await this.getCoordinates(),
+		// await this.getCoordinates(),
 		await this.$store.dispatch('getWeatherInfo');
 		this.weather = this.$store.getters.getWeather
 	},
@@ -91,13 +90,13 @@ export default {
 	.weather__items,
 	.weather__loading
 	{
-		height: min-content;
+		/* height: min-content; */
 		display: flex;
 		flex-flow: column nowrap;
 		justify-content: space-between;
 		align-items: center;
 	}
-	
+
 	.weather img {
 		width: 300px;
 	}
