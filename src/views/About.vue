@@ -15,9 +15,9 @@
 
 <style>
     .about {
+        padding: 0 2rem;
         margin: 0 auto;
-        width: 80%;
-        max-width: 540px;
+        max-width: var(--max-width-global);
         text-align: center;
     }
 </style>
