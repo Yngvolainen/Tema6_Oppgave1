@@ -79,21 +79,11 @@ export default {
 		// get weather from API with preset or entered city, commit change to store
 		async getWeatherInfo(store) {
 			const APP_ID = import.meta.env.VITE_CLIENT_ID;
-			// old api below...
-			// const url = `https://api.openweathermap.org/data/2.5/onecall?lat=60&lon=11&exclude=minutely,hourly,alerts&units=metric&appid=${this.state.APP_ID}`
 			const url = `https://api.openweathermap.org/data/2.5/forecast?q=${this.state.city}&units=metric&appid=${APP_ID}`
 			const response = await fetch(url)
 			const weatherInfo = await response.json()
 			store.commit('setWeather', weatherInfo)
 			console.log(weatherInfo)
-			// KRØLLLLLLLLL fordi store? 🤔
-			// 
-			// try {
-			// 	console.log('trying to try')
-			// 	await this.handleResponse(response)
-			// } catch(error) {
-			// 	store.commit('setError', error.message)
-			// 	console.log('fjaaaaas')
 		},
 		changeCity(store, change) {
 			store.commit('setCity', change)
