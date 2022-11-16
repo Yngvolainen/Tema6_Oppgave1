@@ -79,7 +79,7 @@ export default {
             this.$store.state.weatherLoaded = false
             await this.$store.dispatch('changeCity', this.city)
             await this.$store.dispatch('getWeatherInfo')
-            this.getCountry
+            // this.getCountry
         },
         getCity() {
             this.city = this.$store.getters.getCity
